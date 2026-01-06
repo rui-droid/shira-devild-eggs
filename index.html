@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shira's Devil'd Eggs</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <button class="burger" id="burgerButton" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="hero__content">
+        <p class="eyebrow">Devilled Eggs from heaven</p>
+        <h1>Shira's Devil'd Eggs</h1>
+        <p class="lead">
+          Elegant comfort food met Surinaamse finesse. Bestel jouw favoriete trays devilled eggs voor events, gifting of
+          een onvergetelijke borrel.
+        </p>
+        <button class="btn btn--primary" id="ctaButton" type="button">Bestel nu</button>
+      </div>
+    </header>
+
+    <aside class="drawer" id="optionsDrawer" aria-hidden="true">
+      <div class="drawer__header">
+        <p class="drawer__title">Navigatie</p>
+        <button class="drawer__close" id="drawerClose" aria-label="Sluit menu">&times;</button>
+      </div>
+      <nav class="drawer__nav">
+        <button class="drawer__link" data-target="menu">Menu</button>
+        <button class="drawer__link" data-target="bestellen">Bestellen</button>
+        <button class="drawer__link" data-target="orderHistory">Order History</button>
+      </nav>
+    </aside>
+    <div class="drawer__scrim" id="drawerScrim" aria-hidden="true"></div>
+
+    <main class="app-main app-main--hidden">
+      <section class="section section--menu app-section app-section--hidden" id="menu">
+        <div class="section__header">
+          <h2>Menu</h2>
+          <p>De klassiekers van Shira's Devil'd Eggs, altijd verfijnd en aanpasbaar op aanvraag.</p>
+        </div>
+        <div class="menu-list" id="menuList">
+          <p class="muted">Menu wordt geladen...</p>
+        </div>
+      </section>
+
+      <section class="section section--order app-section app-section--hidden" id="bestellen">
+        <div class="section__header">
+          <h2>Bestellen</h2>
+          <p>Selecteer je smaken en kies een tijdslot minimaal 24 uur vooruit.</p>
+        </div>
+        <form id="orderForm" class="card">
+          <fieldset>
+            <legend>Stap 1 &middot; Kies je samenstelling</legend>
+            <div id="orderMenuList" class="order-menu-list"></div>
+            <p class="muted small">Pas per item de hoeveelheden aan binnen de aangegeven menu-regels.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Stap 2 &middot; Levering</legend>
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="fulfillment" value="afhalen" checked />
+                <span>Afhaal</span>
+              </label>
+              <label class="option">
+                <input type="radio" name="fulfillment" value="bezorgen" />
+                <span>Bezorging</span>
+              </label>
+            </div>
+            <label class="field">
+              <span>Datum</span>
+              <input type="date" id="requestedDate" required />
+            </label>
+            <label class="field">
+              <span>Tijdslot</span>
+              <select id="requestedTime" required></select>
+            </label>
+            <label class="field hidden" id="addressField">
+              <span>Adres voor bezorging</span>
+              <textarea id="address" rows="2" placeholder="Straatnaam 12, Paramaribo"></textarea>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Stap 3 &middot; Gegevens</legend>
+            <label class="field">
+              <span>Naam</span>
+              <input type="text" id="customerName" required />
+            </label>
+            <label class="field">
+              <span>E-mailadres</span>
+              <input type="email" id="customerEmail" required />
+            </label>
+            <label class="field">
+              <span>Telefoonnummer</span>
+              <input type="tel" id="customerPhone" required />
+            </label>
+            <label class="field">
+              <span>Notities / instructies</span>
+              <textarea id="notes" rows="2" placeholder="Dieetwensen, bedrijfsnaam, etc."></textarea>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Stap 4 &middot; Betaling</legend>
+            <div class="options">
+              <label class="option">
+                <input type="radio" name="payment" value="Contant" checked />
+                <span>Contant bij afhaal/bezorging</span>
+              </label>
+              <label class="option">
+                <input type="radio" name="payment" value="Bankoverschrijving" />
+                <span>Bankoverschrijving vooraf</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="order-summary card" id="orderSummary">
+            <h3 class="order-summary__heading">Winkelmand</h3>
+            <p class="muted small">Nog geen items in de winkelmand.</p>
+          </div>
+
+          <div class="checkout">
+            <div>
+              <p class="checkout__label">Totaal</p>
+              <p class="checkout__total" id="orderTotal">SRD 0</p>
+            </div>
+            <button type="submit" class="btn btn--primary btn--status">
+              Bestelling Bevestigen
+            </button>
+          </div>
+          <p id="formResponse" class="form-response" role="status"></p>
+        </form>
+      </section>
+
+      <div class="history-cta">
+        <button type="button" class="btn btn--history btn--history--hidden" id="historyShortcut">Bestellingen bekijken</button>
+      </div>
+
+      <section class="section app-section app-section--hidden" id="orderHistory">
+        <div class="section__header">
+          <h2>Order History</h2>
+          <p>Overzicht van eerdere bestellingen voor snelle opvolging.</p>
+        </div>
+        <div class="history-list" id="historyList">
+          <p class="muted">Order history wordt geladen...</p>
+        </div>
+      </section>
+
+      <section class="section section--info app-section app-section--hidden">
+        <div class="card highlights">
+          <div>
+            <h3>Ambacht met planning</h3>
+            <p>Minimaal 24 uur vooruit zodat elk detail klopt. Flexibel in aantallen binnen de aangegeven bandbreedtes.</p>
+            <p class="notice">Orders kunnen maximaal 24 uur van te voren geannuleerd worden.</p>
+          </div>
+          <div>
+            <h3>Afhalen of bezorgen</h3>
+            <p>We stemmen de timing persoonlijk af. Openingstijden zijn op maat per event.</p>
+          </div>
+          <div>
+            <h3>Voor events &amp; gifting</h3>
+            <p>Perfect voor boardrooms, launches, private diners en feestdagen.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Shira's Devil'd Eggs &middot; Paramaribo</p>
+      <a href="admin.html" class="link">Admin</a>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
+

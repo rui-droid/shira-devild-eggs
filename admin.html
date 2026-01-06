@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin &middot; Shira's Devil'd Eggs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <header class="admin-hero">
+      <div>
+        <p class="eyebrow">Shira's Devil'd Eggs</p>
+        <h1>Atelier admin</h1>
+        <p class="subtitle">Beheer bestellingen, statusupdates en menu in een tijdlijn.</p>
+      </div>
+      <a href="index.html" class="link">Terug naar site</a>
+    </header>
+
+    <main>
+      <section id="loginPanel" class="card auth-card">
+        <h2>Beveiligde toegang</h2>
+        <p>Alleen Shira en het atelierteam hebben toegang.</p>
+        <form id="loginForm" class="login-form">
+          <label class="field">
+            <span>Wachtwoord</span>
+            <input type="password" id="adminKeyInput" placeholder="Voer wachtwoord in" required />
+          </label>
+          <button class="btn btn--primary" type="submit">Ontgrendel dashboard</button>
+          <p id="loginFeedback" class="feedback" role="status"></p>
+        </form>
+      </section>
+
+      <section id="dashboard" class="dashboard hidden">
+        <div class="card summary">
+          <div>
+            <p class="revenue-label">Totale inkomsten</p>
+            <p class="revenue" id="totalRevenue">SRD 0</p>
+          </div>
+          <button id="refreshBtn" class="btn btn--ghost" type="button">Ververs overzicht</button>
+        </div>
+
+        <section class="card">
+          <header class="section-header">
+            <div>
+              <h2>Bestellingen</h2>
+              <p class="muted small">Overzicht van alle bevestigde orders.</p>
+            </div>
+          </header>
+          <div id="ordersList" class="orders-list">
+            <p class="muted">Geen bestellingen gevonden.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="admin.js" defer></script>
+  </body>
+</html>
+

@@ -1,0 +1,27 @@
+{
+  "name": "shiras-devilled-eggs",
+  "version": "1.0.0",
+  "description": "Mobile-first webapp for Shira's Devil'd Eggs premium food business",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "food",
+    "orders"
+  ],
+  "author": "Shira",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
+
